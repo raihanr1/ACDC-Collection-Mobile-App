@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Button, Box, NativeBaseProvider, AspectRatio } from "native-base";
 import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
+import DetailPage from "./screens/DetailPage";
 import {
   StyleSheet,
   Text,
@@ -34,8 +35,10 @@ export default function App() {
   }, []);
   const Drawer = createDrawerNavigator();
   function Component(props) {
+    if (props.route.name === "DetailPage") {
+      return <Text>masukfwqfqwfwq</Text>;
+    }
     if (props.route.name === "Home") {
-      console.log(categories, ">> asup");
       return (
         <SafeAreaView style={styles.container}>
           <ScrollView showsVerticalScrollIndicator={false}>
@@ -86,7 +89,9 @@ export default function App() {
           drawerContent={(props) => <CustomDrawerContent {...props} />}
         >
           <Drawer.Screen name="Home" component={Component} />
-          <Drawer.Screen name="DetailPage" component={Component} />
+          <Drawer.Screen name="Detail" component={Component} />
+
+          <Drawer.Screen name="DetailPage" component={DetailPage} />
           {categories?.map((el) => {
             return (
               <Drawer.Screen key={el.id} name={el.name} component={Component} />

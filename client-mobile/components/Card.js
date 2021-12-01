@@ -11,16 +11,23 @@ import {
   Button,
 } from "native-base";
 import { TouchableHighlight } from "react-native";
-// import { useNavigation } from "@react-navigation/native";
-export default function CardProduct({ item }) {
-  // const navigation = useNavigation();
-  const { Category, description, mainImg, price, name } = item;
 
+export default function CardProduct(props) {
+  const { Category, description, mainImg, price, name, id } = props.item;
+  const onPage = () => {
+    return (
+      <Text>
+        masmasuk gonggggggggggggggg masuk gonggggggggggggggg masuk
+        gonggggggggggggggg masuk gonggggggggggggggguk gonggggggggggggggg
+      </Text>
+    );
+  };
   return (
     <TouchableHighlight
-      key={item.id}
+      key={id}
       activeOpacity={0.6}
       underlayColor="#DDDDDD"
+      onPress={() => onPage()}
     >
       <Stack space={2} alignItems="center">
         <HStack space={3} alignItems="center">
