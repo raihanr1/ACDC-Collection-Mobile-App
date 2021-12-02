@@ -23,12 +23,11 @@ connectMongo().then((data) => {
 
 app.get("/", async (req, res) => {
   let response = await db.collection("user").insertOne({
-    name: "owow",
+    name: "lalala kamu cantik",
     age: 3,
     age1: 3,
     age2: 3,
   });
   let data = await db.collection("user").find().toArray();
-  console.log(data);
   res.json(data);
 });
