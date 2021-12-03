@@ -92,6 +92,7 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
       },
+      UserMongoId: DataTypes.STRING,
     },
     {
       sequelize,

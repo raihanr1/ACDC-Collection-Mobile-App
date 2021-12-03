@@ -10,14 +10,18 @@ app.use(express.json());
 
 app.get("/", async (req, res) => {
   try {
-    let data = await redis.get("users");
+    let data = null;
+    // let data = await redis.get("users");
     if (data) {
-      console.log(data, ">>>>>");
       res.json(JSON.parse(data));
     } else {
       let response = await axios({
         url: "http://localhost:4001/users",
       });
+      let user = response.data.filter(
+        (el) => el._id === "61a9709db005ec157b60643c"
+      );
+      console.log(user);
       await redis.set("users", JSON.stringify(response.data));
       res.status(200).json(response.data);
     }
