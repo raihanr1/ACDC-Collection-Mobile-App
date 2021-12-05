@@ -6,7 +6,6 @@ class UserController {
       let response = await ModelUser.getAllUsers();
       res.status(200).json(response);
     } catch (error) {
-      console.log(error);
       res.status(500).json(error);
     }
   }
@@ -58,7 +57,6 @@ class UserController {
         message: `User id with ${id} success deleted`,
       });
     } catch (error) {
-      console.log(error, ">>>>>>jinagg");
       if (error.message == "Invalid user id") {
         res.status(400).json(error);
       } else if (error.message == "User not found") {
@@ -81,7 +79,9 @@ class UserController {
         phoneNumber,
         address,
       });
-      res.status(200).json(response);
+      res.status(200).json({
+        message: "User has been updated",
+      });
     } catch (error) {
       res.status(500).json(error);
     }

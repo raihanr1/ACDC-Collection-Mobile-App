@@ -9,7 +9,6 @@ class UserModel {
         .toArray();
       return response;
     } catch (error) {
-      console.log(error, ">>");
       return error;
     }
   }
@@ -98,22 +97,35 @@ class UserModel {
     address,
   }) {
     try {
+      console.log({
+        id,
+        username,
+        email,
+        password,
+        phoneNumber,
+        address,
+      });
       let response = await (await connectMongoDB())
         .collection("user")
-        .updateOne({
-          _id: new ObjectId(id),
-          username,
-          email,
-          password,
-          phoneNumber,
-          address,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        });
-      console.log(response);
+        .updateOne(
+          {
+            _id: new ObjectId(id),
+          },
+          {
+            $set: {
+              username,
+              email,
+              password,
+              phoneNumber,
+              address,
+              createdAt: new Date(),
+              updatedAt: new Date(),
+            },
+          }
+        );
       return response;
     } catch (error) {
-      console.log(error);
+      return error;
     }
   }
 }
