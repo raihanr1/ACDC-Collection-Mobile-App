@@ -8,35 +8,35 @@ const { errorHandle } = require("../middleware/errorHandle");
 router.post("/login", Controller.adminLogin);
 router.post(
   "/register",
-  authentication,
-  authorization,
+  // authentication,
+  // authorization,
   Controller.adminRegister
 );
 
 router.post(
   "/categories",
-  authentication,
-  authorization,
+  // authentication,
+  // authorization,
   Controller.createNewCategory
 );
 router.post(
   "/products/:category_id",
-  authentication,
-  authorization,
+  // authentication,
+  // authorization,
   Controller.createNewProduct
 );
 
 router.put(
   "/products/:product_id",
-  authentication,
-  authorization,
+  // authentication,
+  // authorization,
   Controller.updateProduct
 );
 
 router.delete(
   "/products/:product_id",
-  authentication,
-  authorization,
+  // authentication,
+  // authorization,
   Controller.deleteProduct
 );
 
