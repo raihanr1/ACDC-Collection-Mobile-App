@@ -19,7 +19,6 @@ class Controller {
         res.status(200).json(response.data);
       }
     } catch (error) {
-      console.log(error);
       res.status(500).json({
         message: "Invalid server",
       });
@@ -84,7 +83,6 @@ class Controller {
       redis.del("products");
       res.status(201).json(response.data);
     } catch (error) {
-      console.log(error);
       if (error.response.data) {
         res.json(error.response.data);
       } else {
@@ -141,6 +139,7 @@ class Controller {
         url: `${baseUrlProduct}/users/products/${id}`,
         method: "DELETE",
       });
+      redis.del("products");
       res.status(200).json(response.data);
     } catch (error) {
       if (error.response.data.message === "Product not found") {
