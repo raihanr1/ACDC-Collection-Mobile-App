@@ -1,19 +1,17 @@
-FROM node:16.13
+FROM node
 
-WORKDIR /usr/local/app
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm install 
+
+COPY . .
+
 
 ENV PORT=4002
 ENV NODE_ENV=production
 ENV JSON_PRIVATE_KEY=RAIHANLULUSPHASE3
-
-COPY package.json /usr/local/app
-
-RUN npm install -g nodemon
-
-RUN npm install && npm chace clean --force
-
-WORKDIR /usr/local/app/code
-
-COPY . ./
+EXPOSE $PORT
 
 CMD ["npm","run","start"]

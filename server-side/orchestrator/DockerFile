@@ -1,18 +1,15 @@
-FROM node:16.13
+FROM node
 
-WORKDIR /usr/local/app
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm install 
+ 
+COPY . .
 
 ENV NODE_ENV=production
-REDIS_CLOUD_PASSWORD=6PWsqLAGbRksFAg9DdHRU40zlRU32tOp:
-
-COPY package.json /usr/local/app
-
-RUN npm install -g nodemon
-
-RUN npm install && npm chace clean --force
-
-WORKDIR /usr/local/app/code
-
-COPY . ./
+ENV REDIS_CLOUD_PASSWORD=6PWsqLAGbRksFAg9DdHRU40zlRU32tOp:
+EXPOSE $PORT
 
 CMD ["npm","run","start"]
