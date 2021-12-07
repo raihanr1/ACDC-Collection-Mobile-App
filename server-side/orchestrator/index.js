@@ -1,3 +1,4 @@
+require("dotenv").config();
 const { ApolloServer, gql } = require("apollo-server");
 const axios = require("axios");
 const redis = require("./config/redis");
