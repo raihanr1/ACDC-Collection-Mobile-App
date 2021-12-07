@@ -1,0 +1,22 @@
+FROM node:16.13
+
+WORKDIR /usr/local/app
+
+ENV PORT=4001
+ENV NODE_ENV=production
+ENV PASSWORD_MONGO_DB=Raihan12
+
+COPY package-lock.json package.json /usr/local/app
+
+RUN npm install -g nodemon
+
+RUN npm install && npm chace clean --force
+
+WORKDIR /usr/local/app/code
+
+COPY ././
+
+CMD ["npm","run","start"]
+
+
+
