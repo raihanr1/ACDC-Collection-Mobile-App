@@ -8,6 +8,7 @@ const Controller = require("./controllers/ControllerUser");
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 app.get("/users", Controller.getAllUsers);
 
 app.get("/users/:id", Controller.getUsersById);
