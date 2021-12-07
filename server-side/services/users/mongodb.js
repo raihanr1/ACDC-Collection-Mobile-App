@@ -11,7 +11,7 @@ async function connectMongoDB() {
     const dataBase = client.db("MongoTest");
     return dataBase;
   } catch (error) {
-    console.log(error);
+    console.log(error, "=====ERROR");
   }
 }
 
