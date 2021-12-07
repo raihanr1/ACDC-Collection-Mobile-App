@@ -1,17 +1,52 @@
-import { NativeBaseProvider, Center, View, StyleSheet } from "native-base";
-import { ScroolView } from "react-native";
-import CardProduct from "../components/Card";
+import React from "react";
+import { Box, AspectRatio } from "native-base";
+import {
+  StyleSheet,
+  Text,
+  Image,
+  ScrollView,
+  SafeAreaView,
+} from "react-native";
+import { gql, useQuery } from "@apollo/client";
+
 export default function Homepage() {
+  const FETCH_CATEGORY = gql`
+    query FETCH_CATEGORY {
+      Categories {
+        name
+        mainImg
+        id
+      }
+    }
+  `;
+  const { loading, error, data } = useQuery(FETCH_CATEGORY);
+  if (loading) {
+    <Text>Loading.........</Text>;
+  }
   return (
-    <NativeBaseProvider>
-      <View style={styles.container}>
-        <ScroolView>
-          <Center flex={1} px="3">
-            <CardProduct />
-          </Center>
-        </ScroolView>
-      </View>
-    </NativeBaseProvider>
+    <SafeAreaView>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <Box>
+          <Text>This is our categories :</Text>
+          {data.Categories.map((el) => {
+            return (
+              <Box key={el.id} m={2} p={2}>
+                <AspectRatio w="100%">
+                  <Image
+                    source={{
+                      uri: el.mainImg,
+                    }}
+                    height={500}
+                    alt="image"
+                  />
+                </AspectRatio>
+                <Text>{el.name}</Text>
+              </Box>
+            );
+          })}
+        </Box>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
