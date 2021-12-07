@@ -97,14 +97,6 @@ class UserModel {
     address,
   }) {
     try {
-      console.log({
-        id,
-        username,
-        email,
-        password,
-        phoneNumber,
-        address,
-      });
       let response = await (await connectMongoDB())
         .collection("user")
         .updateOne(
