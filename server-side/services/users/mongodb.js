@@ -1,9 +1,12 @@
 const { MongoClient, ObjectId } = require("mongodb");
-const uri = "mongodb://localhost:27017";
+const uri = `mongodb+srv://raihanrobbani123:${process.env.PASSWORD_MONGO_DB}@hacktiv-react-native.afjyg.mongodb.net/hacktiv-react-native?retryWrites=true&w=majority`;
 
 async function connectMongoDB() {
   try {
-    const client = new MongoClient(uri);
+    const client = new MongoClient(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
     await client.connect();
     const dataBase = client.db("MongoTest");
     return dataBase;
