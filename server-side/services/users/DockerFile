@@ -8,9 +8,9 @@ RUN npm install
 
 COPY . .
 
-ENV PORT=4001
-ENV NODE_ENV=production
-ENV PASSWORD_MONGO_DB=Raihan12
+# ENV PORT=4001
+# ENV NODE_ENV=production
+# ENV PASSWORD_MONGO_DB=Raihan12
 EXPOSE $PORT
 
 CMD ["npm","run","start"]
