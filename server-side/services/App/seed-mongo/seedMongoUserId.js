@@ -8,7 +8,7 @@ collectionDB()
     let users = await User.findAll();
     let updated = await Product.update(
       {
-        UserMongoId: "61a9709db005ec157b60643c",
+        UserMongoId: "61af226bd117d19e96ead98b",
       },
       {
         where: {
