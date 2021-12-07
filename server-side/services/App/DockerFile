@@ -6,7 +6,7 @@ ENV PORT=4002
 ENV NODE_ENV=production
 ENV JSON_PRIVATE_KEY=RAIHANLULUSPHASE3
 
-COPY package-lock.json package.json /usr/local/app
+COPY package.json /usr/local/app
 
 RUN npm install -g nodemon
 
@@ -14,6 +14,6 @@ RUN npm install && npm chace clean --force
 
 WORKDIR /usr/local/app/code
 
-COPY ././
+COPY . ./
 
 CMD ["npm","run","start"]

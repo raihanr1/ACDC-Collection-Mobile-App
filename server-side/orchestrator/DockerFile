@@ -5,7 +5,7 @@ WORKDIR /usr/local/app
 ENV NODE_ENV=production
 REDIS_CLOUD_PASSWORD=6PWsqLAGbRksFAg9DdHRU40zlRU32tOp:
 
-COPY package-lock.json package.json /usr/local/app
+COPY package.json /usr/local/app
 
 RUN npm install -g nodemon
 
@@ -13,6 +13,6 @@ RUN npm install && npm chace clean --force
 
 WORKDIR /usr/local/app/code
 
-COPY ././
+COPY . ./
 
 CMD ["npm","run","start"]
