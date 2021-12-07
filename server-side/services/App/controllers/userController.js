@@ -27,6 +27,23 @@ class Controller {
     }
   }
 
+  static async getProductById(req, res, next) {
+    try {
+      let id = req.params.id;
+      let response = await Product.findAll({
+        include: {
+          model: Image,
+        },
+        where: {
+          id,
+        },
+      });
+      res.status(200).json(response);
+    } catch (error) {
+      next(error);
+    }
+  }
+
   static async getAllCategories(req, res, next) {
     try {
       let response = await Category.findAll();

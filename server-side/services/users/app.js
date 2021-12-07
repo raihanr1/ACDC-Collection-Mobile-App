@@ -18,5 +18,7 @@ app.delete("/users/:id", Controller.deleteUsers);
 app.put("/users/:id", Controller.updateUsers);
 
 connectMongoDB().then((data) => {
-  app.listen(port);
+  app.listen(port, () => {
+    console.log(`Listening on port http://localhost:${port}/mongo`);
+  });
 });

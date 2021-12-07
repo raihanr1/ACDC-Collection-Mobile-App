@@ -87,9 +87,17 @@ class Controller {
     const t = await sequelize.transaction();
     try {
       let id = req.params.category_id;
-      let { name, description, price, mainImg, CategoryId, reserveImage } =
-        req.body;
-      let category = Category.findByPk(+id);
+      let {
+        name,
+        description,
+        price,
+        mainImg,
+        CategoryId,
+        reserveImage,
+        AuthorId,
+        UserMongoId,
+      } = req.body;
+      let category = await Category.findByPk(+id);
       if (!category) {
         throw {
           message: "Category not found",
@@ -100,8 +108,9 @@ class Controller {
         description,
         price,
         mainImg,
-        CategoryId,
-        AuthorId: req.user.id,
+        CategoryId: category.id,
+        AuthorId,
+        UserMongoId,
       });
       let promise = [];
       reserveImage.forEach(async (el) => {
@@ -137,7 +146,7 @@ class Controller {
           message: "Product not found",
         };
       }
-      let product = await Product.update(
+      let [isUpdated, product] = await Product.update(
         {
           name,
           description,
@@ -153,14 +162,14 @@ class Controller {
         }
       );
       let response = {
-        name: product.name,
-        description: product.description,
-        price: product.price,
-        mainImg: product.mainImg,
-        CategoryId: product.CategoryId,
-        slug: product.slug,
+        name: product[0].name,
+        description: product[0].description,
+        price: product[0].price,
+        mainImg: product[0].mainImg,
+        CategoryId: product[0].CategoryId,
+        slug: product[0].slug,
       };
-      if (!product[0]) {
+      if (!isUpdated) {
         res.status(200).json({
           message: "Nothing update product",
         });
