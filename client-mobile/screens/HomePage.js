@@ -11,24 +11,25 @@ import { gql, useQuery } from "@apollo/client";
 
 export default function Homepage() {
   const FETCH_CATEGORY = gql`
-    query FETCH_CATEGORY {
+    query Query {
       Categories {
+        id
         name
         mainImg
-        id
       }
     }
   `;
   const { loading, error, data } = useQuery(FETCH_CATEGORY);
   if (loading) {
-    <Text>Loading.........</Text>;
+    return <Text>Loading.........</Text>;
   }
+  console.log(data, loading, ">>>>");
   return (
     <SafeAreaView>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Box>
           <Text>This is our categories :</Text>
-          {data.Categories.map((el) => {
+          {data?.Categories.map((el) => {
             return (
               <Box key={el.id} m={2} p={2}>
                 <AspectRatio w="100%">

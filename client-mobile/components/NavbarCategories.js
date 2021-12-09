@@ -20,12 +20,13 @@ export default function NavbarCategoires() {
   if (loading) {
     return <Text>Loading.........</Text>;
   }
+  console.log(data, ">>>>");
   return (
     <Drawer.Navigator
       drawerContent={(props) => <CustomDrawerContent {...props} />}
     >
       <Drawer.Screen name="Home" component={Homepage} />
-      {data.Categories?.map((el) => {
+      {data?.Categories?.map((el) => {
         return (
           <Drawer.Screen key={el.id} name={el.name} component={CategoryPage} />
         );

@@ -123,6 +123,7 @@ const resolvers = {
     Categories: async () => {
       try {
         let chace = await redis.get("categories");
+        console.log("hit ga");
         if (chace) {
           return JSON.parse(chace);
         } else {
@@ -130,6 +131,7 @@ const resolvers = {
             method: "GET",
             url: `${baseUrlApp}/products/categories`,
           });
+
           redis.set("categories", JSON.stringify(response.data));
           return response.data;
         }

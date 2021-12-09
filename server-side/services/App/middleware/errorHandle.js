@@ -1,4 +1,5 @@
 function errorHandle(err, req, res, next) {
+  console.log(err, ">>>>>");
   if (err.name === "ForeignKeyConstraintError") {
     res.status(404).json({
       message: "Category not found",

@@ -46,9 +46,12 @@ class Controller {
 
   static async getAllCategories(req, res, next) {
     try {
+      console.log("test");
       let response = await Category.findAll();
+      console.log(response, ">>>>>>>");
       res.status(200).json(response);
     } catch (error) {
+      console.log(error, ">>>>>>errorr");
       next(error);
     }
   }
