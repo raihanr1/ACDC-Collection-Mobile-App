@@ -1,5 +1,3 @@
-# P3-Challenge-2
-
 UI Library: Reac-native
 
 Struktur Folder:
