@@ -1,0 +1,17 @@
+FROM node
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm install 
+
+COPY . .
+
+
+ENV PORT=4002
+ENV NODE_ENV=production
+ENV JSON_PRIVATE_KEY=RAIHANLULUSPHASE3
+EXPOSE $PORT
+
+CMD ["npm","run","start"]

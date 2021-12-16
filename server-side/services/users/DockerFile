@@ -1,0 +1,20 @@
+FROM node:16.13.0
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm install && npm cache clean --force
+
+COPY . .
+
+# ENV PORT=4001
+# ENV NODE_ENV=production
+# ENV PASSWORD_MONGO_DB=Raihan12
+
+EXPOSE $PORT
+
+CMD ["npm","run","start"]
+
+
+

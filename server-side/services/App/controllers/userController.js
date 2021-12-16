@@ -1,0 +1,60 @@
+const { Product, Category, Image } = require("../models");
+class Controller {
+  static async getAllProducts(req, res, next) {
+    try {
+      let response = await Product.findAll({
+        include: [
+          {
+            model: Category,
+            attributes: {
+              exclude: ["createdAt", "updatedAt"],
+            },
+          },
+          {
+            model: Image,
+            attributes: {
+              exclude: ["createdAt", "updatedAt"],
+            },
+          },
+        ],
+        attributes: {
+          exclude: ["createdAt", "updatedAt", "AuthorId"],
+        },
+      });
+      res.status(200).json(response);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async getProductById(req, res, next) {
+    try {
+      let id = req.params.id;
+      let response = await Product.findAll({
+        include: {
+          model: Image,
+        },
+        where: {
+          id,
+        },
+      });
+      res.status(200).json(response);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async getAllCategories(req, res, next) {
+    try {
+      console.log("test");
+      let response = await Category.findAll();
+      console.log(response, ">>>>>>>");
+      res.status(200).json(response);
+    } catch (error) {
+      console.log(error, ">>>>>>errorr");
+      next(error);
+    }
+  }
+}
+
+module.exports = Controller;
